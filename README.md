@@ -1,190 +1,192 @@
-# AI Lead Scoring Dashboard
+🔍 Lead Intent Scoring Dashboard
+A web-based lead scoring dashboard that utilizes machine learning and rule-based natural language re-ranking to predict lead intent and prioritize high-conversion prospects.
 
-A web-based lead scoring dashboard that implements machine learning and intelligent re-ranking to predict lead intent and prioritize high-conversion prospects.
+🚀 Live Demo
+Deployed Application: http://127.0.0.1:5000
 
-## 🚀 Live Demo
+📋 Overview
+This project tackles the problem of lead qualification inefficiency using a smart two-layer scoring system:
 
-**Deployed Application:** https://60h5imcyy73y.manus.space
+Machine Learning Model: Analyzes demographic and financial data to generate an initial intent score.
 
-## 📋 Overview
+LLM Re-ranker: Uses rule-based NLP to fine-tune the score based on urgency and interest reflected in user comments.
 
-This project addresses the critical business problem of lead qualification inefficiency by implementing a sophisticated two-stage scoring mechanism:
+🔑 Key Features
+Real-time intent scoring on a 0–100 scale
 
-1. **Machine Learning Model**: Analyzes demographic and financial indicators to generate initial intent scores
-2. **LLM Re-ranker**: Processes natural language comments to adjust scores based on urgency and interest signals
+Responsive frontend with a modern UI
 
-### Key Features
+REST API backend with input validation
 
-- Real-time lead scoring (0-100 scale)
-- Responsive React frontend with modern UI components
-- RESTful API backend with comprehensive validation
-- Rule-based comment analysis for intent detection
-- Dashboard analytics with lead statistics
-- Mobile-responsive design
+Rule-based comment re-ranking
 
-## 🏗️ Architecture
+Dashboard with lead analytics
 
-```
-├── frontend/          # React application
-├── backend/           # Flask API server
-├── model/            # Trained ML model
-├── data/             # Training dataset
+Mobile-friendly design
+
+🏗️ Project Structure
+bash
+Copy
+Edit
+├── frontend/          # React-based UI
+├── backend/           # Flask API backend
+├── model/             # Trained ML model
+├── data/              # Dataset used for training
 └── README.md
-```
+💻 Tech Stack
+Frontend
+React 18 + Hooks
 
-### Technology Stack
+Tailwind CSS
 
-**Frontend:**
-- React 18 with hooks
-- Tailwind CSS for styling
-- shadcn/ui components
-- Vite for build tooling
+shadcn/ui components
 
-**Backend:**
-- Flask web framework
-- Flask-CORS for cross-origin requests
-- Simplified scoring algorithm (production-ready)
-- In-memory lead storage
+Vite for fast builds
 
-**Machine Learning:**
-- XGBoost for initial model training
-- Kaggle Lead Scoring Dataset (~9,000 records)
-- Feature engineering and preprocessing
+Backend
+Flask
 
-## 🛠️ Local Development
+Flask-CORS
 
-### Prerequisites
+RESTful endpoints
 
-- Node.js 18+ and pnpm
-- Python 3.11+ and pip
-- Git
+In-memory data storage
 
-### Frontend Setup
+Machine Learning
+XGBoost (for training)
 
-```bash
+Simplified scoring logic for deployment
+
+🛠️ Local Development
+Prerequisites
+Node.js 18+ and pnpm
+
+Python 3.11+
+
+Git
+
+Frontend Setup
+bash
+Copy
+Edit
 cd frontend
 pnpm install
 pnpm run dev
-```
+Available at: http://localhost:5173
 
-The frontend will be available at `http://localhost:5173`
-
-### Backend Setup
-
-```bash
+Backend Setup
+bash
+Copy
+Edit
 cd backend
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 python src/main.py
-```
+API running at: http://localhost:5000
 
-The backend API will be available at `http://localhost:5000`
+Full-Stack Integration
+To run as a unified application:
 
-### Full-Stack Development
-
-For integrated development, the backend serves the built frontend from the `/static` directory. Build the frontend and copy to backend:
-
-```bash
+bash
+Copy
+Edit
 cd frontend
 pnpm run build
 cp -r dist/* ../backend/src/static/
-```
+Then launch only the backend to serve the app with integrated frontend.
 
-Then run only the backend server to access the complete application.
+📊 Dataset
+Source: Kaggle Lead Scoring Dataset
 
-## 📊 Dataset
+Records: ~9,000
 
-The project uses the [Lead Scoring Dataset](https://www.kaggle.com/datasets/amritachatterjee09/lead-scoring-dataset) from Kaggle, containing:
+Features: Demographics, website activity, lead sources
 
-- **Size**: ~9,000 lead records
-- **Features**: Demographics, website behavior, lead sources
-- **Target**: Binary conversion outcomes
-- **Domain**: Educational services industry
+Industry: Educational services
 
-### Key Features Used
+Example Features
+Website visits, time on site, page views
 
-- Total website visits
-- Time spent on website
-- Page views per visit
-- Lead origin and source
-- Demographic information
+Lead origin, income, credit score, age group
 
-## 🤖 Machine Learning Model
+User-submitted comments
 
-### Initial Model (XGBoost)
+🤖 ML Model Summary
+Training Model
+Algorithm: XGBoost Classifier
 
-- **Algorithm**: XGBoost Classifier
-- **Features**: 5 key predictors
-- **Performance**: Trained on 80-20 split
-- **Output**: Probability scores (0-1) scaled to 0-100
+Input: 5 top-performing features
 
-### Production Model (Simplified)
+Split: 80/20 train-test
 
-For deployment reliability, the production system uses a simplified algorithm that:
+Output: Probabilistic score → scaled to 0–100
 
-- Maintains core feature importance relationships
-- Eliminates external ML library dependencies
-- Provides consistent and interpretable results
-- Ensures reliable cloud deployment
+Production Model
+To optimize reliability:
 
-## 🧠 LLM Re-ranker
+Lightweight, dependency-free logic
 
-The rule-based re-ranker analyzes lead comments for intent signals:
+Preserves feature weight relationships
 
-### Positive Keywords (+5 to +20 points)
-- "urgent", "interested", "ready", "buy", "purchase"
-- "need", "want", "asap", "immediately", "soon"
+Ensures interpretability and stable deployment
 
-### Negative Keywords (-5 to -30 points)
-- "not interested", "maybe", "later", "thinking"
-- "budget", "expensive", "spam", "unsubscribe"
+🧠 LLM-Based Re-ranker
+Uses keyword matching to adjust scores:
 
-### Logic
-1. Case-insensitive keyword matching
-2. Cumulative score adjustments
-3. Final score capped at 0-100 range
+➕ Positive Keywords (+5 to +20)
+“urgent”, “ready”, “interested”, “purchase”, “soon”
 
-## 🔒 Compliance
+➖ Negative Keywords (-5 to -30)
+“not interested”, “maybe”, “budget”, “spam”, “unsubscribe”
 
-- **Consent Management**: Mandatory consent checkbox
-- **Data Minimization**: Only essential data collection
-- **Privacy by Design**: In-memory storage for demo
-- **Input Validation**: Comprehensive client and server-side validation
+Logic:
+Case-insensitive
 
-## 📈 Performance Metrics
+Cumulative scoring
 
-- **API Response Time**: <300ms (as required)
-- **Frontend Performance**: Optimized React patterns
-- **Scoring Accuracy**: Calibrated for business relevance
-- **Conversion Lift Target**: 2-3x improvement
+Final score clamped between 0–100
 
-## 🚀 Deployment
+🔐 Compliance & Privacy
+✅ Consent required from users
 
-The application is deployed using Manus deployment services:
+✅ Minimal data collection
 
-1. **Frontend**: React build optimized for production
-2. **Backend**: Flask application with integrated frontend serving
-3. **Architecture**: Single deployment with API and static file serving
+✅ Data stored in-memory (demo only)
 
-### Deployment Commands
+✅ Full input validation on client and server
 
-```bash
-# Build frontend
+📈 Performance Metrics
+Metric	Value
+API Response Time	< 300ms
+Scoring Accuracy	Calibrated & tuned
+Conversion Lift Goal	2–3x
+Frontend Performance	Optimized React
+
+🚀 Deployment Strategy
+Built using React (frontend) + Flask (backend)
+
+Unified deployment: static files served via Flask
+
+Designed for cloud-friendly deployment
+
+Deployment Commands
+bash
+Copy
+Edit
+# Build the frontend
 cd frontend && pnpm run build
 
-# Deploy backend with integrated frontend
-# (Frontend files copied to backend/src/static/)
-```
+# Copy build to backend for deployment
+cp -r dist/* ../backend/src/static/
+📘 API Documentation
+POST /api/score
+Submit a new lead for scoring.
 
-## 📝 API Documentation
-
-### POST /api/score
-
-Score a new lead.
-
-**Request Body:**
-```json
+Request:
+json
+Copy
+Edit
 {
   "phone_number": "+91-9876543210",
   "email": "user@example.com",
@@ -195,65 +197,62 @@ Score a new lead.
   "comments": "Very interested and need urgently",
   "consent": true
 }
-```
-
-**Response:**
-```json
+Response:
+json
+Copy
+Edit
 {
   "email": "user@example.com",
   "initial_score": 65.5,
   "reranked_score": 85.5,
   "comments": "Very interested and need urgently"
 }
-```
+GET /api/leads
+Retrieve all submitted leads.
 
-### GET /api/leads
+GET /api/health
+Check API health status.
 
-Retrieve all scored leads.
+🧪 Testing Coverage
+✔️ Form validation
 
-### GET /api/health
+✔️ Re-ranking logic
 
-Health check endpoint.
+✔️ Score accuracy
 
-## 🧪 Testing
+✔️ API integration tests
 
-The application includes comprehensive testing scenarios:
+🔮 Future Enhancements
+Transformer-based NLP for advanced re-ranking
 
-1. **Form Validation**: Required fields, data types, ranges
-2. **Scoring Logic**: Various input combinations
-3. **Re-ranking**: Keyword detection and score adjustments
-4. **API Integration**: End-to-end workflow testing
+PostgreSQL/MongoDB for persistent storage
 
-## 🔮 Future Enhancements
+CRM integrations (e.g., Salesforce, HubSpot)
 
-- **Advanced NLP**: Integration with transformer-based language models
-- **Database Integration**: Persistent storage with PostgreSQL/MongoDB
-- **Analytics Dashboard**: Historical trends and performance metrics
-- **CRM Integration**: Salesforce, HubSpot connectivity
-- **A/B Testing**: Score threshold optimization
-- **Real-time Notifications**: High-intent lead alerts
+Analytics dashboard for trends
 
-## 📄 License
+A/B testing for score thresholds
 
-This project is developed for demonstration purposes. Please ensure compliance with applicable data protection regulations when using with real customer data.
+Real-time lead alerts and notifications
 
-## 👥 Contributing
+📄 License
+This project is for demonstration and learning purposes only. Use responsibly and in compliance with local data protection laws.
 
-This is a prototype project. For production use, consider:
+👥 Contributing
+This prototype is ideal for developers interested in:
 
-1. Implementing proper database storage
-2. Adding user authentication and authorization
-3. Enhancing security measures
-4. Scaling infrastructure for production load
-5. Implementing comprehensive monitoring and logging
+Integrating a proper database
 
-## 📞 Contact
+Adding user auth (JWT/OAuth)
 
-**Developer**: Manus AI  
-**Email**: Available upon request  
-**LinkedIn**: [Manus AI](https://linkedin.com/company/manus-ai)  
+Building CI/CD pipelines
 
----
+Monitoring and logging
 
-**Live Application**: https://60h5imcyy73y.manus.space
+Scaling to production use
 
+📞 Contact
+Developer: Surya Venkata Karthikeya Yelamanchili
+📧 Email: ykarthikeya2004@gmail.com
+🔗 LinkedIn: My Profile
+💻 GitHub: karthikc7
