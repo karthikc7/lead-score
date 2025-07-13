@@ -2,7 +2,7 @@
 A web-based lead scoring dashboard that utilizes machine learning and rule-based natural language re-ranking to predict lead intent and prioritize high-conversion prospects.
 
 🚀 Live Demo
-Deployed Application: http://127.0.0.1:5000
+Deployed Application: [http://127.0.0.1:5000](https://lead-score-qzd5.vercel.app/)
 
 📋 Overview
 This project tackles the problem of lead qualification inefficiency using a smart two-layer scoring system:
