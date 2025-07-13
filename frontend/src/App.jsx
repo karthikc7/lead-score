@@ -22,7 +22,7 @@ function App() {
     comments: '',
     consent: false
   })
-  
+
   const [leads, setLeads] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -40,7 +40,7 @@ function App() {
     setError('')
 
     try {
-      const response = await fetch('/api/score', {
+      const response = await fetch("https://60h5imcyy73y.manus.space/api/score", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -58,8 +58,7 @@ function App() {
 
       const result = await response.json()
       setLeads(prev => [result, ...prev])
-      
-      // Reset form
+
       setFormData({
         phone_number: '',
         email: '',
@@ -92,7 +91,6 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
             AI Lead Scoring Dashboard
@@ -102,7 +100,6 @@ function App() {
           </p>
         </div>
 
-        {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -141,7 +138,6 @@ function App() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Lead Input Form */}
           <Card>
             <CardHeader>
               <CardTitle>Add New Lead</CardTitle>
@@ -274,7 +270,6 @@ function App() {
             </CardContent>
           </Card>
 
-          {/* Leads Table */}
           <Card>
             <CardHeader>
               <CardTitle>Scored Leads</CardTitle>
@@ -337,4 +332,3 @@ function App() {
 }
 
 export default App
-
